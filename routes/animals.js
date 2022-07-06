@@ -11,7 +11,7 @@ router.get('/', async function (req, res, next) {
 });
 
 /* Ajout d'un Animal par méthode POST. */
-router.post('/add', async function (req, res, next) {
+router.post('/', async function (req, res, next) {
 
     // a document instance
     var newDog = new Animals({name : req.body.name,color : req.body.color, race : req.body.race});
@@ -27,16 +27,20 @@ router.post('/add', async function (req, res, next) {
 });
 
 /* Suppression d'un Animal par méthode POST. */
-router.post('/delete', async function (req, res, next) {
+router.delete('/', async function (req, res, next) {
+    try{
+        const result = await Animals.deleteOne({_id : req.body.id})
 
-    const action = await Animals.deleteOne({_id : req.body.id})
-
-    if(action.error()){
-        res.status(404).end()
-    } else {
-        res.status(203).end()
+        if (result.deletedCount === 1) {
+            console.log("Successfully deleted one document.");
+            res.status(204).end()
+        } else {
+            console.log("No documents matched the query. Deleted 0 documents.");
+            res.status(404).end()
+        }
+    } catch (err){
+        res.status(500).end()
     }
-
 });
 
 
