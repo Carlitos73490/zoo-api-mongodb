@@ -6,4 +6,4 @@ const schema = mongoose.Schema({
     race : String
 })
 
-module.exports = mongoose.model("Dog",schema)
+module.exports = mongoose.model("animals",schema)

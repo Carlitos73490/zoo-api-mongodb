@@ -35,11 +35,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //Mes routes
 
-const articlesRouter = require('./routes/articles');
-app.use('/articles', articlesRouter);
 
-const dogsRouter = require('./routes/dogs');
-app.use('/dogs', dogsRouter);
+const animalsRouter = require('./routes/animals');
+app.use('/animals', animalsRouter);
 
 
 
