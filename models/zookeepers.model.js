@@ -1,8 +1,10 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose';
 
 const schema = mongoose.Schema({
     firstname : String,
     lastname : String
 })
 
-module.exports = mongoose.model("zookeepers",schema)
+export const zooKeepersModel = mongoose.model("zookeepers",schema)
+
+

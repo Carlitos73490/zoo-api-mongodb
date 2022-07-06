@@ -1,5 +1,7 @@
 import createError from "http-errors";
-import {router} from './routes/animals.routes.js'
+import {router as animalsRouter} from './routes/animals.routes.js'
+import {router as zooKeeperRouter} from './routes/zookeepers.routes.js'
+
 import express from "express";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
@@ -36,10 +38,8 @@ app.use(cookieParser());
 //Mes routes
 
 
-app.use('/animals', router);
-
-//const zookeepersRouter = require('./routes/zookeepers.routes');
-//app.use('/zookeepers', zookeepersRouter);
+app.use('/animals', animalsRouter);
+app.use('/zookeepers', zooKeeperRouter);
 
 
 
