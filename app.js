@@ -1,17 +1,30 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const app = express();
 
-var app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+//Mongoose
+
+const mongoose = require('mongoose');
+const mongodb = 'mongodb://root:example@localhost:27017/Restaurants?authSource=admin';
+const database = mongoose.connection;
+mongoose.connect(mongodb,
+    {
+      useNewUrlParser : true,
+      useUnifiedTopology : true
+    })
+
+database.on('error',console.error.bind(console,'connection error :'),)
+database.on('open',() =>{
+  console.log('connected to database')
+})
+
+// Config Générique express
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -19,8 +32,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
+//Mes routes
+
+const articlesRouter = require('./routes/articles');
+app.use('/articles', articlesRouter);
+
+const dogsRouter = require('./routes/dogs');
+app.use('/dogs', dogsRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
