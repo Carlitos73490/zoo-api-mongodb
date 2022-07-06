@@ -10,7 +10,7 @@ const app = express();
 //Mongoose
 
 const mongoose = require('mongoose');
-const mongodb = 'mongodb://root:example@localhost:27017/Restaurants?authSource=admin';
+const mongodb = 'mongodb+srv://ThienChi:PwBd7m9xkL32L9HW@clusterzoo.auqan.mongodb.net/?retryWrites=true&w=majority';
 const database = mongoose.connection;
 mongoose.connect(mongodb,
     {
