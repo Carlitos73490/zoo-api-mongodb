@@ -12,13 +12,17 @@ Au moins deux collections
 
 # Objectifs
 
-L'Api contient une liste d'animaux appartenant à un zoo 
+- L'Api contient une liste d'animaux appartenant à un zoo 
 
-On peut ajouter et supprimer un animal (Nouveau arrivant/Décès)
+- On peut ajouter et supprimer un animal (Nouveau arrivant/Décès)
 
-La BDD stock la fréquence à laquelle l'animal doit être nourrie ainsi que la quantité de nourriture à donner 
+- La BDD stock la fréquence à laquelle l'animal doit être nourrie ainsi que la quantité de nourriture à donner 
 
-A partir de ça on peut donner la prochaine date à laquelle l'animal doit être nourrir
+- A partir de ça on peut donner la prochaine date à laquelle l'animal doit être nourrir
 
-une route doit permettre d'indiquer que l'animal a été nourrie
+- une route doit permettre d'indiquer que l'animal a été nourrie
+
+# Extension 
+
+Pour avoir une deuxième collection on peut créer une collection soignant et imagniner un système pour avoir un historique de qui a nourrit l'animal
 
