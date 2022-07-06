@@ -3,10 +3,8 @@
 /**
  * Module dependencies.
  */
-
-const app = require('../app');
-const  debug = require('debug')('zoo-api:server');
-const  http = require('http');
+import {app} from "../app.js";
+import {createServer} from "http";
 
 
 /**
@@ -20,7 +18,7 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-const  server = http.createServer(app);
+const  server = createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -87,7 +85,6 @@ function onListening() {
   const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  debug('Listening on ' + bind);
   console.log('Listening on ' + bind)
 
 }

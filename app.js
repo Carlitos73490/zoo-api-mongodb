@@ -1,16 +1,18 @@
-const createError = require('http-errors');
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
+import createError from "http-errors";
+import {router} from './routes/animals.routes.js'
+import express from "express";
+import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
 
-const app = express();
+import {config} from 'dotenv'
+config()
+
+export const app = express();
 
 
 //Mongoose
 
-const mongoose = require('mongoose');
-const mongodb = 'mongodb+srv://ThienChi:PwBd7m9xkL32L9HW@clusterzoo.auqan.mongodb.net/zoo?retryWrites=true&w=majority';
+const mongodb = process.env.DATABASE_URL;
 const database = mongoose.connection;
 mongoose.connect(mongodb,
     {
@@ -26,18 +28,18 @@ database.on('open',() =>{
 // Config Générique express
 
 
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 
 //Mes routes
 
 
-const animalsRouter = require('./routes/animals');
-app.use('/animals', animalsRouter);
+app.use('/animals', router);
+
+//const zookeepersRouter = require('./routes/zookeepers.routes');
+//app.use('/zookeepers', zookeepersRouter);
 
 
 
@@ -57,4 +59,3 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;

@@ -1,23 +1,19 @@
-const express = require('express');
-const router = express.Router();
+import {getAll} from "../controller/animals.controller.js";
+import {Router} from "express";
 
-const Animals = require('../models/animals')
-
+export const router = Router();
 
 /* Récupération de la liste d'animals GET. */
-router.get('/', async function (req, res, next) {
-    const dogs = await Animals.find()
-    res.send(dogs);
-});
+router.get('/',getAll);
 
 /* Ajout d'un Animal par méthode POST. */
 router.post('/', async function (req, res, next) {
 
     // a document instance
-    var newDog = new Animals({name : req.body.name,color : req.body.color, race : req.body.race});
+    var newAnimal = new animalsModel({name : req.body.name,color : req.body.color, race : req.body.race});
 
     // save model to database
-    newDog.save(function (err, dog) {
+    newAnimal.save(function (err, dog) {
         if (err) return console.error(err);
         console.log(dog.name + " saved to Animals collection.");
     });
@@ -29,7 +25,7 @@ router.post('/', async function (req, res, next) {
 /* Suppression d'un Animal par méthode POST. */
 router.delete('/', async function (req, res, next) {
     try{
-        const result = await Animals.deleteOne({_id : req.body.id})
+        const result = await animalsModel.deleteOne({_id : req.body.id})
 
         if (result.deletedCount === 1) {
             console.log("Successfully deleted one document.");
@@ -44,9 +40,3 @@ router.delete('/', async function (req, res, next) {
 });
 
 
-
-
-
-
-
-module.exports = router;
