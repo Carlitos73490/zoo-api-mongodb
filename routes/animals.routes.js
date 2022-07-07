@@ -1,6 +1,6 @@
 import {Router} from "express";
 
-import {add, getAll, insertMany, remove} from "../controller/animals.controller.js";
+import {add, deleteAll, getAll, insertMany, remove} from "../controller/animals.controller.js";
 import {authenticateJWT} from "../controller/auth.controller.js";
 
 export const router = Router();
