@@ -4,7 +4,7 @@ import {
     add,
     deleteAll,
     feed,
-    getAll,
+    getAll, getBy, getById,
     insertMany,
     remove
 } from "../controller/animals.controller.js";

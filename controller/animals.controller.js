@@ -1,5 +1,5 @@
 import {
-    addAnimals,
+    addAnimal,
     deleteAllAnimals,
     feedAnimal,
     getAnimals,
@@ -26,7 +26,7 @@ export async function getById(req,res,next){
 }
 
 export async function add(req,res,next){
-    res.send(await addAnimals(req.body.name, req.body.species, req.body.foodFrequency));
+    res.send(await addAnimal(req.body.name, req.body.species, req.body.foodFrequency));
 }
 export async function remove(req,res,next){
     res.send(await removeAnimals(req.params.id));
