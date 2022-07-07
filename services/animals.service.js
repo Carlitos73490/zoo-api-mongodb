@@ -1,4 +1,5 @@
 import {animalsModel} from "../models/animals.model.js";
+import { faker } from '@faker-js/faker';
 
 
 export async function getAnimals() {
@@ -9,11 +10,17 @@ export async function getAnimals() {
     }
 }
 
-export async function addAnimals(name,race,color) {
-    const newAnimal = new animalsModel({name : name ,race : race,color : color});
+export async function addAnimals(name,race,foodfrequency) {
+    const newAnimal = new animalsModel({
+        name : name,
+        race : race,
+        foodFrequency : foodfrequency,
+        lastFeed : new Date()
+    });
+
     newAnimal.save(function (err, animal) {
         if (err) return console.error(err);
-        console.log(animal.name + " saved to Zookeepers collection.");
+        console.log(animal.name + " saved to animals collection.");
     });
 }
 
@@ -29,5 +36,22 @@ export async function removeAnimals(){
     } catch (err){
 
     }
+}
+
+export async function insertManyAnimals() {
+    let animalsListToInsert = [];
+
+    for (let i= 0; i < 1000; i++) {
+        animalsListToInsert.push(
+            {
+                name : faker.name.firstName(),
+                species : faker.animal.type(),
+                foodFrequency : Math.floor(Math.random() * 10),
+                lastFeed : new Date()
+            }
+        )
+    }
+
+    animalsModel.insertMany(animalsListToInsert).then(() => console.log("Data inserted")).catch((err) => console.log(err));
 }
 

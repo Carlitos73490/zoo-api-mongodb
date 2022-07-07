@@ -1,4 +1,4 @@
-import {addAnimals, getAnimals, removeAnimals} from "../services/animals.service.js";
+import {addAnimals, getAnimals, insertManyAnimals, removeAnimals} from "../services/animals.service.js";
 
 export async function getAll(req, res, next) {
     res.send(await getAnimals());
@@ -7,7 +7,13 @@ export async function getAll(req, res, next) {
 
 export async function add(req,res,next){
 
-    await addAnimals(req.body.firstname,req.body.lastname);
+    await addAnimals(req.body.name, req.body.species, req.body.foodFrequency);
+    res.status(203).end()
+}
+
+export async function insertMany(req,res,next){
+
+    await insertManyAnimals();
     res.status(203).end()
 }
 

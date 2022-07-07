@@ -7,7 +7,7 @@ export async function getAll(req, res, next) {
 
 export async function add(req,res,next){
 
-    await addZooKeepers(req.body.firstname,req.body.lastname);
+    await addZooKeepers(req.body.name, req.body.lastname);
     res.status(203).end()
 }
 

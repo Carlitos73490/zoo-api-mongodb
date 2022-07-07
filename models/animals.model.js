@@ -2,8 +2,9 @@ import mongoose from 'mongoose';
 
 const schema = mongoose.Schema({
     name : String,
-    color : String,
-    race : String
+    species : String,
+    foodFrequency: Number,
+    lastFeed: Date
 })
 
 export const animalsModel = mongoose.model("animals",schema)

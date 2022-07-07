@@ -1,28 +1,17 @@
 # zoo-api-mongodb
 
-# Projet 
+## Projet
+Faire une api node js avec Express avec une exposition de routes sur le thème d’un zoo.
+La logique métier est au choix, il faut être créatif.
+Au moins deux collections
 
-Faire une api node js avec Express avec une exposition de routes sur le thème d’un zoo 
-
-La logique métier et au choix, il faut être créatif
-
-
-Au moins deux collections 
-
-
-# Objectifs
-
-- L'Api contient une liste d'animaux appartenant à un zoo 
-
+## Objectifs
+- L'Api contient une liste d'animaux appartenant à un zoo
 - On peut ajouter et supprimer un animal (Nouveau arrivant/Décès)
-
-- La BDD stock la fréquence à laquelle l'animal doit être nourrie ainsi que la quantité de nourriture à donner 
-
+- La BDD stock la fréquence à laquelle l'animal doit être nourri ainsi que la quantité de nourriture à donner
 - A partir de ça on peut donner la prochaine date à laquelle l'animal doit être nourrir
+- Une route doit permettre d'indiquer que l'animal a été nourri
 
-- une route doit permettre d'indiquer que l'animal a été nourrie
-
-# Extension 
-
-Pour avoir une deuxième collection on peut créer une collection soignant et imagniner un système pour avoir un historique de qui a nourrit l'animal
+## Extension
+Pour avoir une deuxième collection on peut créer une collection gardien de zoo et imagniner un système pour avoir un historique de qui a nourrit l'animal
 
