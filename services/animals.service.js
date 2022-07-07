@@ -1,10 +1,17 @@
 import {animalsModel} from "../models/animals.model.js";
 import { faker } from '@faker-js/faker';
+import {addHours, differenceInHours} from "date-fns";
 
 
 export async function getAnimals() {
     try{
-        return await animalsModel.find({})
+        const animalsList = await animalsModel.find({});
+
+        for await (const animal of animalsList) {
+            animal.nextFeeding = await computeAnimalNextFeeding(animal);
+        }
+
+        return animalsList;
    } catch(err) {
         return err
     }
@@ -44,7 +51,7 @@ export async function insertManyAnimals() {
                 {
                     name: faker.name.firstName(),
                     species: faker.animal.type(),
-                    foodFrequency: Math.floor(Math.random() * 10),
+                    foodFrequency: Math.floor((Math.random() * 10) + 2),
                     lastFeed: new Date()
                 }
             )
@@ -63,3 +70,13 @@ export async function deleteAllAnimals() {
     }
 }
 
+export async function computeAnimalNextFeeding(animal) {
+    try {
+        const lastFeedingDate = animal.lastFeed;
+        const nextFeedingDate = addHours(lastFeedingDate, animal.foodFrequency);
+        const currentDay = await new Date();
+        return differenceInHours(nextFeedingDate, currentDay);
+    } catch (err) {
+        return err;
+    }
+}
