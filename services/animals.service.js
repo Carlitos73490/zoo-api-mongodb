@@ -63,3 +63,15 @@ export async function deleteAllAnimals() {
     }
 }
 
+export async function getAnimalsBy(body) {
+    try {
+        for (const bodyKey in body) {
+            body[bodyKey] = `/${body[bodyKey]}/i`
+        }
+
+        return animalsModel.find(body)
+    } catch (err){
+        return err
+    }
+}
+

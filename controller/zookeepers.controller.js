@@ -10,7 +10,7 @@ export async function add(req,res,next){
 }
 
 export async function remove(req,res,next){
-    res.send(await removeZooKeepers(req.body.id));
+    res.send(await removeZooKeepers(req.params.id));
 }
 
 export async function insertMany(req,res,next){
