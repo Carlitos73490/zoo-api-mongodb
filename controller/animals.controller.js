@@ -1,6 +1,7 @@
 import {
     addAnimals,
     deleteAllAnimals,
+    feedAnimal,
     getAnimals,
     insertManyAnimals,
     removeAnimals
@@ -27,5 +28,10 @@ export async function remove(req,res,next){
 
 export async function deleteAll(req,res,next){
     res.send(await deleteAllAnimals());
+
+}
+
+export async function feed(req,res,next){
+    res.send(await feedAnimal(req.params.id));
 
 }

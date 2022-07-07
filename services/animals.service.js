@@ -80,3 +80,11 @@ export async function computeAnimalNextFeeding(animal) {
         return err;
     }
 }
+
+export async function feedAnimal(animalId) {
+    try {
+        return animalsModel.findByIdAndUpdate(animalId, {lastFeed: new Date()});
+    } catch (err) {
+        return err;
+    }
+}
