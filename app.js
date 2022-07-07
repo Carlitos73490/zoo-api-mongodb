@@ -33,7 +33,7 @@ mongoose.connect(mongodb,
 database.on('error', console.error.bind(console, 'connection error :'))
 database.on('open', () => console.log('connected to database'))
 
-// Mes routes
+// Nos routes
 app.use('/animals', animalsRouter);
 app.use('/zookeepers', zooKeeperRouter);
 app.use('/auth', authRouter);

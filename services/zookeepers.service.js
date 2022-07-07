@@ -1,6 +1,10 @@
 import {zooKeepersModel} from "../models/zookeepers.model.js";
 import {faker} from "@faker-js/faker";
 
+/**
+ * Récupérer la liste des gardiens de zoo
+ * @returns {Promise<Query<Array<HydratedDocument<InferSchemaType<*>, ObtainSchemaGeneric<*, "TInstanceMethods">, {}>>, Document<unknown, any, unknown> & unknown extends {_id?: infer U} ? (U extends any ? {_id: Types.ObjectId} : Required<{_id: U}>) : {_id: Types.ObjectId}, unknown, unknown>|*>}
+ */
 export async function getZooKeepers() {
     try {
         return await zooKeepersModel.find({})
@@ -9,6 +13,12 @@ export async function getZooKeepers() {
     }
 }
 
+/**
+ * Ajouter un gardien de zoo
+ * @param firstname
+ * @param lastname
+ * @returns {Promise<(Document<unknown, any, unknown> & unknown extends {_id?: infer U} ? (U extends any ? {_id: Types.ObjectId} : Required<{_id: U}>) : {_id: Types.ObjectId})|*>}
+ */
 export async function addZooKeepers(firstname, lastname) {
     try {
         const newZooKeeper = new zooKeepersModel({firstname: firstname, lastname: lastname});
@@ -18,6 +28,11 @@ export async function addZooKeepers(firstname, lastname) {
     }
 }
 
+/**
+ * Supprimer un gardien de zoo avec son ID
+ * @param id
+ * @returns {Promise<Query<DeleteResult, Document<unknown, any, unknown> & unknown extends {_id?: infer U} ? (U extends any ? {_id: Types.ObjectId} : Required<{_id: U}>) : {_id: Types.ObjectId}, unknown, unknown>|*>}
+ */
 export async function removeZooKeepers(id){
         try{
                 return await zooKeepersModel.deleteOne({_id : id})
@@ -26,6 +41,12 @@ export async function removeZooKeepers(id){
         }
 }
 
+/**
+ * Vérifie si un user existe
+ * @param username
+ * @param password
+ * @returns {Promise<*|Query<Document<unknown, any, unknown> & unknown extends {_id?: infer U} ? (U extends any ? {_id: Types.ObjectId} : Required<{_id: U}>) : {_id: Types.ObjectId}, Document<unknown, any, unknown> & unknown extends {_id?: infer U} ? (U extends any ? {_id: Types.ObjectId} : Required<{_id: U}>) : {_id: Types.ObjectId}, unknown, unknown>>}
+ */
 export async function checkUser(username,password){
     try{
          return await zooKeepersModel.findOne({username :username ,password : password})
@@ -34,6 +55,10 @@ export async function checkUser(username,password){
     }
 }
 
+/**
+ * Permet d'ajouter des données par 1000
+ * @returns {Promise<Array<HydratedDocument<MergeType<MergeType<InferSchemaType<*>, InferSchemaType<*>>, RequireOnlyTypedId<InferSchemaType<*>>>, ObtainSchemaGeneric<*, "TInstanceMethods">, {}>>>}
+ */
 export async function insertManyZooKeeper() {
     let zooKeeperListToInsert = [];
 

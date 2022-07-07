@@ -1,6 +1,6 @@
 # zoo-api-mongodb
 
-## Projet
+## Projet énoncé
 Faire une api node js avec Express avec une exposition de routes sur le thème d’un zoo.
 La logique métier est au choix, il faut être créatif.
 Au moins deux collections
@@ -13,5 +13,13 @@ Au moins deux collections
 - Une route doit permettre d'indiquer que l'animal a été nourri
 
 ## Extension
-Pour avoir une deuxième collection on peut créer une collection gardien de zoo et imagniner un système pour avoir un historique de qui a nourrit l'animal
+Pour avoir une deuxième collection on peut créer une collection gardien de zoo
+
+## Installation du projet
+- npm install
+- npm run start
+
+## Librairies externe utilisées
+- date-fns : Permet d'avoir des fonctionnnalités de calcul avec des dates
+- @faker-js/faker : Permet d'injecter des datas aléatoires en masse
 
