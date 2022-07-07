@@ -5,6 +5,7 @@
  */
 import {app} from "../app.js";
 import {createServer} from "http";
+import debug from "debug";
 
 
 /**
@@ -85,6 +86,7 @@ function onListening() {
   const bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
+  debug('zoo-api:server','Listening on ' + bind)
   console.log('Listening on ' + bind)
 
 }

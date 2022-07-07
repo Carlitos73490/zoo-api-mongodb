@@ -1,4 +1,4 @@
-import {getAll} from "../controller/animals.controller.js";
+import {add, getAll, remove} from "../controller/animals.controller.js";
 import {Router} from "express";
 
 export const router = Router();
@@ -7,36 +7,9 @@ export const router = Router();
 router.get('/',getAll);
 
 /* Ajout d'un Animal par méthode POST. */
-router.post('/', async function (req, res, next) {
-
-    // a document instance
-    var newAnimal = new animalsModel({name : req.body.name,color : req.body.color, race : req.body.race});
-
-    // save model to database
-    newAnimal.save(function (err, dog) {
-        if (err) return console.error(err);
-        console.log(dog.name + " saved to Animals collection.");
-    });
-
-
-    res.status(203).end()
-});
+router.post('/', add);
 
 /* Suppression d'un Animal par méthode POST. */
-router.delete('/', async function (req, res, next) {
-    try{
-        const result = await animalsModel.deleteOne({_id : req.body.id})
-
-        if (result.deletedCount === 1) {
-            console.log("Successfully deleted one document.");
-            res.status(204).end()
-        } else {
-            console.log("No documents matched the query. Deleted 0 documents.");
-            res.status(404).end()
-        }
-    } catch (err){
-        res.status(500).end()
-    }
-});
+router.delete('/', remove);
 
 

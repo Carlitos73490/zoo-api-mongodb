@@ -14,7 +14,7 @@ export async function addZooKeepers(firstname,lastname){
 
         newZooKeeper.save(function (err, keeper) {
                 if (err) return console.error(err);
-                console.log(keeper.name + " saved to Zookeepers collection.");
+                console.log(keeper.firstname + " saved to Zookeepers collection.");
         });
 }
 
