@@ -10,8 +10,7 @@ export async function getAnimals() {
 }
 
 export async function addAnimals(name,race,color) {
-    const newAnimals = new animalsModel({name : name ,race : race,color : color});
-
+    const newAnimal = new animalsModel({name : name ,race : race,color : color});
     newAnimal.save(function (err, animal) {
         if (err) return console.error(err);
         console.log(animal.name + " saved to Zookeepers collection.");

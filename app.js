@@ -5,6 +5,8 @@ import cookieParser from "cookie-parser";
 import {config} from 'dotenv'
 import {router as animalsRouter} from './routes/animals.routes.js'
 import {router as zooKeeperRouter} from './routes/zookeepers.routes.js'
+import {router as authRouter} from './routes/auth.routes.js'
+
 import morgan from 'morgan';
 
 
@@ -36,6 +38,8 @@ database.on('open',() => console.log('connected to database'))
 // Mes routes
 app.use('/animals', animalsRouter);
 app.use('/zookeepers', zooKeeperRouter);
+app.use('/auth', authRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
