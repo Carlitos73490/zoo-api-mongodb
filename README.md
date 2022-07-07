@@ -28,3 +28,7 @@ Requête à http://localhost:3000/auth avec les identifiants suivants :
 - date-fns : Permet d'avoir des fonctionnnalités de calcul avec des dates
 - @faker-js/faker : Permet d'injecter des datas aléatoires en masse
 
+
+[Download Postman](Zoo.postman_collection.json "download")
+
+
