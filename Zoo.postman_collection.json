@@ -1,0 +1,359 @@
+{
+	"info": {
+		"_postman_id": "6063f2a9-a59b-4f45-8655-c2df21e995e6",
+		"name": "Zoo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Animals Filtered",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRlY2tvd0EiLCJpYXQiOjE2NTcxOTg4ODR9.otF4lBsBavCSA23UnEswhrulFe_nFFUlpZYf-C2FqjA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"a\",\n    \"species\" : \"hor\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/animals?page=1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"animals"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Animal By id ",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRlY2tvd0EiLCJpYXQiOjE2NTcxOTg4ODR9.otF4lBsBavCSA23UnEswhrulFe_nFFUlpZYf-C2FqjA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\" : \"carl\",\n    \"password\" : \"1234\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/animals/62c6b0a867deec5c7d653c58",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"animals",
+						"62c6b0a867deec5c7d653c58"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\" : \"DeckowA\",\n    \"password\" : \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/auth",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1000 animals init",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRlY2tvd0EiLCJpYXQiOjE2NTcxOTg4ODR9.otF4lBsBavCSA23UnEswhrulFe_nFFUlpZYf-C2FqjA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/animals/generateDatas",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"animals",
+						"generateDatas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1000 zookeepers init",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRlY2tvd0EiLCJpYXQiOjE2NTcxOTg4ODR9.otF4lBsBavCSA23UnEswhrulFe_nFFUlpZYf-C2FqjA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/zookeepers/generateData",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"zookeepers",
+						"generateData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "new animals",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRlY2tvd0EiLCJpYXQiOjE2NTcyMDAwNDN9.oSAABmA7Gwajolv7ZgshhpapMIK8L8AQ0IlpPRcxiMQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"Cookie\",\n    \"species\" : \"cat\",\n    \"foodFrequency\" : 1\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/animals/new",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"animals",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get animal by id ",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRlY2tvd0EiLCJpYXQiOjE2NTcyMDAwNDN9.oSAABmA7Gwajolv7ZgshhpapMIK8L8AQ0IlpPRcxiMQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/animals/62c6ddb5793f45f8b5f6bb4a",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"animals",
+						"62c6ddb5793f45f8b5f6bb4a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Feed",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRlY2tvd0EiLCJpYXQiOjE2NTcyMDAwNDN9.oSAABmA7Gwajolv7ZgshhpapMIK8L8AQ0IlpPRcxiMQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/animals/62c6ddb5793f45f8b5f6bb4a",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"animals",
+						"62c6ddb5793f45f8b5f6bb4a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All animals with next feeding and pagination",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRlY2tvd0EiLCJpYXQiOjE2NTcyMDAwNDN9.oSAABmA7Gwajolv7ZgshhpapMIK8L8AQ0IlpPRcxiMQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/animals?page=3",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"animals"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reset all animals (DeleteAll)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRlY2tvd0EiLCJpYXQiOjE2NTcyMDAwNDN9.oSAABmA7Gwajolv7ZgshhpapMIK8L8AQ0IlpPRcxiMQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/animals/deleteDatas",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"animals",
+						"deleteDatas"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
