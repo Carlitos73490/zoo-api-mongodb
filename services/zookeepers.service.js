@@ -4,31 +4,28 @@ import {faker} from "@faker-js/faker";
 
 export async function getZooKeepers() {
     try{
-        return  zooKeepersModel.find({})
+        return await zooKeepersModel.find({})
    } catch(err){
-        console.log('erreur zookeepersModel find')
+        return err
     }
 }
 
 export async function addZooKeepers(firstname,lastname){
-        const newZooKeeper = new zooKeepersModel({firstname : firstname ,lastname : lastname});
+        try{
+            const newZooKeeper = new zooKeepersModel({firstname : firstname ,lastname : lastname});
+            return await newZooKeeper.save()
+        } catch (err){
+            return err
+        }
 
-        newZooKeeper.save(function (err, keeper) {
-                if (err) return console.error(err);
-                console.log(keeper.firstname + " saved to Zookeepers collection.");
-        });
 }
 
 export async function removeZooKeepers(id){
         try{
                 const result = await zooKeepersModel.deleteOne({_id : id})
-                if (result.deletedCount === 1) {
-                        console.log("Successfully deleted one document.");
-                } else {
-                        console.log("No documents matched the query. Deleted 0 documents.");
-                }
+                 return result
         } catch (err){
-
+                return err
         }
 }
 
@@ -46,5 +43,6 @@ export async function insertManyZooKeeper() {
 
     return await zooKeepersModel.insertMany(zooKeeperListToInsert);
 }
+
 
 

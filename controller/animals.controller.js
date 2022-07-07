@@ -1,4 +1,10 @@
-import {addAnimals, getAnimals, insertManyAnimals, removeAnimals} from "../services/animals.service.js";
+import {
+    addAnimals,
+    deleteAllAnimals,
+    getAnimals,
+    insertManyAnimals,
+    removeAnimals
+} from "../services/animals.service.js";
 
 export async function getAll(req, res, next) {
     res.send(await getAnimals());
@@ -6,20 +12,20 @@ export async function getAll(req, res, next) {
 
 
 export async function add(req,res,next){
-
-    await addAnimals(req.body.name, req.body.species, req.body.foodFrequency);
-    res.status(203).end()
+    res.send(await addAnimals(req.body.name, req.body.species, req.body.foodFrequency));
 }
 
 export async function insertMany(req,res,next){
 
-    await insertManyAnimals();
-    res.status(203).end()
+    res.send(await insertManyAnimals());
+
 }
 
 export async function remove(req,res,next){
+    res.send(await removeAnimals(req.body.id));
+}
 
-    await removeAnimals(req.body.id);
-    res.status(204).end()
+export async function deleteAll(req,res,next){
+    res.send(await deleteAllAnimals());
 
 }
