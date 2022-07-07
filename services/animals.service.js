@@ -35,9 +35,17 @@ export async function addAnimals(name,race,foodfrequency) {
 }
 
 
-export async function removeAnimals(){
+export async function removeAnimals(id){
     try{
         return await animalsModel.deleteOne({_id : id})
+    } catch (err){
+        return err
+    }
+}
+
+export async function getAnimalById(id){
+    try{
+        return await animalsModel.findById(id)
     } catch (err){
         return err
     }
@@ -80,6 +88,19 @@ export async function computeAnimalNextFeeding(animal) {
         return err;
     }
 }
+export async function getAnimalsBy(body) {
+    try {
+        for (const bodyKey in body) {
+            const regex = new RegExp(body[bodyKey], 'i')
+            body[bodyKey] = {"$regex" : regex}
+        }
+
+        return animalsModel.find(body)
+    } catch (err){
+        return err
+    }
+}
+
 
 export async function feedAnimal(animalId) {
     try {

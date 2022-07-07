@@ -14,6 +14,6 @@ router.post('/',authenticateJWT, add);
 router.post('/generateData',authenticateJWT, insertMany);
 
 /* Suppression d'un Gardien par méthode POST. */
-router.delete('/',authenticateJWT,remove);
+router.delete('/:id',authenticateJWT,remove);
 
 
