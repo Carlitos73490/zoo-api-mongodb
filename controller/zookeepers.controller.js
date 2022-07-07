@@ -6,14 +6,9 @@ export async function getAll(req, res, next) {
 
 
 export async function add(req,res,next){
-
-    await addZooKeepers(req.body.name, req.body.lastname);
-    res.status(203).end()
+    res.send(await addZooKeepers(req.body.firstname, req.body.lastname));
 }
 
 export async function remove(req,res,next){
-
-    await removeZooKeepers(req.body.id);
-    res.status(204).end()
-
+    res.send(await removeZooKeepers(req.body.id));
 }
