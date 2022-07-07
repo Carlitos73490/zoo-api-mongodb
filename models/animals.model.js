@@ -4,7 +4,8 @@ const schema = mongoose.Schema({
     name : String,
     species : String,
     foodFrequency: Number,
-    lastFeed: Date
+    lastFeed: Date,
+    nextFeeding: Number,
 })
 
 export const animalsModel = mongoose.model("animals",schema)

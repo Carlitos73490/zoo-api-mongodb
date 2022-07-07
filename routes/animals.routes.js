@@ -19,7 +19,7 @@ router.post('/new',authenticateJWT, add);
 router.delete('/:id',authenticateJWT, remove);
 
 /* Ajout data aléatoire par 1000 par méthode POST. */
-router.post('/generateData', authenticateJWT, insertMany);
+router.post('/generateDatas', authenticateJWT, insertMany);
 
 /* Reset par méthode POST. */
 router.post('/deleteDatas',authenticateJWT, deleteAll);
