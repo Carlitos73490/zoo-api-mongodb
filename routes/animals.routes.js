@@ -11,9 +11,8 @@ router.get('/',authenticateJWT,getAll);
 /* Ajout d'un Animal par méthode POST. */
 router.post('/',authenticateJWT, add);
 
-/* Ajout d'un Animal par méthode POST. */
-//router.post('/',authenticateJWT, add);
-router.post('/generateData', insertMany);
+/* Ajout data aléatoire par 1000 par méthode POST. */
+router.post('/generateData', authenticateJWT, insertMany);
 
 /* Suppression d'un Animal par méthode POST. */
 router.delete('/',authenticateJWT, remove);
