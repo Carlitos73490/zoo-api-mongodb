@@ -1,6 +1,6 @@
 import {Router} from "express";
 
-import {add, deleteAll, getAll, getBy, insertMany, remove} from "../controller/animals.controller.js";
+import {add, deleteAll, getAll, getBy, getById, insertMany, remove} from "../controller/animals.controller.js";
 import {authenticateJWT} from "../controller/auth.controller.js";
 
 export const router = Router();
@@ -14,6 +14,10 @@ router.post('/',authenticateJWT, getBy);
 
 /* Ajout d'un Animal par méthode POST. */
 router.post('/new',authenticateJWT, add);
+
+
+/* Récupération d'un Animal par méthode GET. */
+router.get('/:id',authenticateJWT, getById);
 
 /* Suppression d'un Animal par méthode DELETE. */
 router.delete('/:id',authenticateJWT, remove);
