@@ -19,6 +19,11 @@ Pour avoir une deuxième collection on peut créer une collection gardien de zoo
 - npm install
 - npm run start
 
+## Un identification de connexion pour générer le token
+Requête à http://localhost:3000/auth avec les identifiants suivants :
+- username: ManteA
+- password: 1234
+
 ## Librairies externe utilisées
 - date-fns : Permet d'avoir des fonctionnnalités de calcul avec des dates
 - @faker-js/faker : Permet d'injecter des datas aléatoires en masse
