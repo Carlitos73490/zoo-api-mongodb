@@ -2,19 +2,14 @@ import createError from "http-errors";
 import express from "express";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
-import {config} from 'dotenv'
 import {router as animalsRouter} from './routes/animals.routes.js'
 import {router as zooKeeperRouter} from './routes/zookeepers.routes.js'
 import {router as authRouter} from './routes/auth.routes.js'
-
 import morgan from 'morgan';
-
+import {config} from "dotenv";
 
 
 export const app = express();
-
-//DotEnv init
-config()
 
 // Config Générique express
 
@@ -22,6 +17,9 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+//DotEnv init
+config()
 
 //Mongoose
 const mongodb = process.env.DATABASE_URL;

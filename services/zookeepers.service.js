@@ -22,11 +22,18 @@ export async function addZooKeepers(firstname,lastname){
 
 export async function removeZooKeepers(id){
         try{
-                const result = await zooKeepersModel.deleteOne({_id : id})
-                 return result
+                return await zooKeepersModel.deleteOne({_id : id})
         } catch (err){
                 return err
         }
+}
+
+export async function checkUser(username,password){
+    try{
+         return await zooKeepersModel.findOne({username :username ,password : password})
+    } catch (err){
+        return err
+    }
 }
 
 export async function insertManyZooKeeper() {
@@ -37,6 +44,8 @@ export async function insertManyZooKeeper() {
             {
                 firstname : faker.name.firstName(),
                 lastname : faker.name.lastName(),
+                username : lastname + firstname[0],
+                password : 1234
             }
         )
     }

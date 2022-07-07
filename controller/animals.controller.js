@@ -9,7 +9,7 @@ import {
 } from "../services/animals.service.js";
 
 export async function getAll(req, res, next) {
-    res.send(await getAnimals());
+    res.send(await getAnimals(req.query.page));
 }
 
 export async function deleteAll(req,res,next){
@@ -18,7 +18,7 @@ export async function deleteAll(req,res,next){
 }
 
 export async function getBy(req, res, next) {
-    res.send(await getAnimalsBy(req.body));
+    res.send(await getAnimalsBy(req.body,req.query.page));
 }
 
 export async function getById(req,res,next){

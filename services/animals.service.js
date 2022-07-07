@@ -1,14 +1,21 @@
 import {animalsModel} from "../models/animals.model.js";
 import { faker } from '@faker-js/faker';
 import {addHours, differenceInHours} from "date-fns";
+import {config} from "dotenv";
+//DotEnv init
+config()
+
+const pageSize = process.env.PAGE_SIZE
 
 /**
  * Récupération de tout les animaux
+ * @param { number } page
  * @return { any }
  */
-export async function getAnimals() {
+export async function getAnimals(page = 1) {
     try{
-        const animalsList = await animalsModel.find({});
+        const animalsList = await animalsModel.find({}).limit(pageSize).skip((page - 1) * pageSize)
+
 
         for await (const animal of animalsList) {
             animal.nextFeeding = await computeAnimalNextFeeding(animal);
@@ -121,15 +128,16 @@ export async function computeAnimalNextFeeding(animal) {
  * Récuperation de tout les animaux correspondants aux params (dynamique) de recherhe
  * le regex est la pour effectuer ue recherche souple
  * @param { Object } body
+ * @param { number } page
  * @return { any }
  */
-export async function getAnimalsBy(body) {
+export async function getAnimalsBy(body,page = 1) {
     try {
         for (const bodyKey in body) {
             const regex = new RegExp(body[bodyKey], 'i')
             body[bodyKey] = {"$regex" : regex}
         }
-        return animalsModel.find(body)
+        return animalsModel.find(body).limit(pageSize).skip((page - 1) * pageSize)
     } catch (err){
         return err
     }
