@@ -2,7 +2,10 @@ import {animalsModel} from "../models/animals.model.js";
 import { faker } from '@faker-js/faker';
 import {addHours, differenceInHours} from "date-fns";
 
-
+/**
+ * Récupération de tout les animaux
+ * @return { any }
+ */
 export async function getAnimals() {
     try{
         const animalsList = await animalsModel.find({});
@@ -17,7 +20,14 @@ export async function getAnimals() {
     }
 }
 
-export async function addAnimals(name,race,foodfrequency) {
+/**
+ * Ajout d'un nouvel animal
+ * @param { String } name
+ * @param { String } race
+ * @param { number } foodfrequency
+ * @return { any }
+ */
+export async function addAnimal(name,race,foodfrequency) {
     try{
         const newAnimal = new animalsModel({
             name : name,
@@ -34,15 +44,24 @@ export async function addAnimals(name,race,foodfrequency) {
 
 }
 
-
+/**
+ * Suppresion d'un animal par son id unique
+ * @param { String } id
+ * @return { any }
+ */
 export async function removeAnimals(id){
     try{
-        return await animalsModel.deleteOne({_id : id})
+        return await animalsModel.findByIdAndRemove(id)
     } catch (err){
         return err
     }
 }
 
+/**
+ * Récupération d'un animal par son id unique
+ * @param { String } id
+ * @return { any }
+ */
 export async function getAnimalById(id){
     try{
         return await animalsModel.findById(id)
@@ -51,6 +70,10 @@ export async function getAnimalById(id){
     }
 }
 
+/**
+ * Insertions de 1000 animaux en une requête Api
+ * @return { any }
+ */
 export async function insertManyAnimals() {
     try {
         let animalsListToInsert = [];
@@ -70,6 +93,10 @@ export async function insertManyAnimals() {
     }
 }
 
+/**
+ * Suppresion de tout les animaux de la base
+ * @return { any }
+ */
 export async function deleteAllAnimals() {
     try {
     return animalsModel.deleteMany({})
@@ -77,6 +104,7 @@ export async function deleteAllAnimals() {
         return err
     }
 }
+
 
 export async function computeAnimalNextFeeding(animal) {
     try {
@@ -88,13 +116,19 @@ export async function computeAnimalNextFeeding(animal) {
         return err;
     }
 }
+
+/**
+ * Récuperation de tout les animaux correspondants aux params (dynamique) de recherhe
+ * le regex est la pour effectuer ue recherche souple
+ * @param { Object } body
+ * @return { any }
+ */
 export async function getAnimalsBy(body) {
     try {
         for (const bodyKey in body) {
             const regex = new RegExp(body[bodyKey], 'i')
             body[bodyKey] = {"$regex" : regex}
         }
-
         return animalsModel.find(body)
     } catch (err){
         return err

@@ -4,7 +4,7 @@ import {
     getAnimals,
     insertManyAnimals,
     removeAnimals,
-    getAnimalsBy
+    getAnimalsBy, getAnimalById
 } from "../services/animals.service.js";
 
 export async function getAll(req, res, next) {

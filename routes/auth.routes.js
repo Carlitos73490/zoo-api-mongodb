@@ -4,7 +4,9 @@ export const router = Router();
 
 
 
-/* Route de Login  */
+/**
+ * Route Login
+ */
 router.post('/', login);
 
 
