@@ -1,6 +1,13 @@
 import {Router} from "express";
 
-import {add, deleteAll, getAll, getBy, getById, insertMany, remove} from "../controller/animals.controller.js";
+import {
+    add,
+    deleteAll,
+    feed,
+    getAll,
+    insertMany,
+    remove
+} from "../controller/animals.controller.js";
 import {authenticateJWT} from "../controller/auth.controller.js";
 
 export const router = Router();
@@ -27,6 +34,12 @@ router.post('/generateDatas', authenticateJWT, insertMany);
 
 /* Reset par méthode POST. */
 router.post('/deleteDatas',authenticateJWT, deleteAll);
+
+/* Suppression d'un Animal par méthode POST. */
+router.delete('/',authenticateJWT, remove);
+
+/* Nourrir animal par méthode PATCH. */
+router.patch('/:id', authenticateJWT, feed);
 
 
 

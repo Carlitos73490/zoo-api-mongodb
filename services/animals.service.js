@@ -135,3 +135,11 @@ export async function getAnimalsBy(body) {
     }
 }
 
+
+export async function feedAnimal(animalId) {
+    try {
+        return animalsModel.findByIdAndUpdate(animalId, {lastFeed: new Date()});
+    } catch (err) {
+        return err;
+    }
+}
