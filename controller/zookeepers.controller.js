@@ -1,4 +1,4 @@
-import {addZooKeepers, getZooKeepers, removeZooKeepers} from "../services/zookeepers.service.js";
+import {addZooKeepers, getZooKeepers, insertManyZooKeeper, removeZooKeepers} from "../services/zookeepers.service.js";
 
 export async function getAll(req, res, next) {
     res.send(await getZooKeepers());
@@ -11,4 +11,10 @@ export async function add(req,res,next){
 
 export async function remove(req,res,next){
     res.send(await removeZooKeepers(req.body.id));
+}
+
+export async function insertMany(req,res,next){
+
+    await insertManyZooKeeper();
+    res.status(203).end()
 }

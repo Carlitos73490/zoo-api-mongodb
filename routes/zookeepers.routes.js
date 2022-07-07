@@ -1,5 +1,5 @@
 import {Router} from "express";
-import {add, getAll, remove} from "../controller/zookeepers.controller.js";
+import {add, getAll, remove, insertMany} from "../controller/zookeepers.controller.js";
 import {authenticateJWT} from "../controller/auth.controller.js";
 export const router = Router();
 
@@ -9,6 +9,9 @@ router.get('/',authenticateJWT, getAll);
 
 /* Ajout d'un Gardien par méthode POST. */
 router.post('/',authenticateJWT, add);
+
+/* Ajout d'un Gardien par méthode POST. */
+router.post('/generateData',authenticateJWT, insertMany);
 
 /* Suppression d'un Gardien par méthode POST. */
 router.delete('/',authenticateJWT,remove);

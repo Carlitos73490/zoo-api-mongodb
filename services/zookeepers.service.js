@@ -1,4 +1,5 @@
 import {zooKeepersModel} from "../models/zookeepers.model.js";
+import {faker} from "@faker-js/faker";
 
 
 export async function getZooKeepers() {
@@ -26,6 +27,21 @@ export async function removeZooKeepers(id){
         } catch (err){
                 return err
         }
+}
+
+export async function insertManyZooKeeper() {
+    let zooKeeperListToInsert = [];
+
+    for (let i= 0; i < 1000; i++) {
+        zooKeeperListToInsert.push(
+            {
+                firstname : faker.name.firstName(),
+                lastname : faker.name.lastName(),
+            }
+        )
+    }
+
+    return await zooKeepersModel.insertMany(zooKeeperListToInsert);
 }
 
 
