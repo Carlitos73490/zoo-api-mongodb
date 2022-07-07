@@ -1,5 +1,5 @@
 import {animalsModel} from "../models/animals.model.js";
-import { faker } from '@faker-js/faker';
+import {faker} from '@faker-js/faker';
 import {addHours, differenceInHours} from "date-fns";
 import {config} from "dotenv";
 //DotEnv init
@@ -22,7 +22,7 @@ export async function getAnimals(page = 1) {
         }
 
         return animalsList;
-   } catch(err) {
+    } catch (err) {
         return err
     }
 }
@@ -34,21 +34,18 @@ export async function getAnimals(page = 1) {
  * @param { number } foodfrequency
  * @return { any }
  */
-export async function addAnimal(name,race,foodfrequency) {
-    try{
+export async function addAnimal(name, race, foodfrequency) {
+    try {
         const newAnimal = new animalsModel({
-            name : name,
-            race : race,
-            foodFrequency : foodfrequency,
-            lastFeed : new Date()
+            name: name,
+            race: race,
+            foodFrequency: foodfrequency,
+            lastFeed: new Date()
         });
-
         return await newAnimal.save()
-
-    } catch (err){
+    } catch (err) {
         return err
     }
-
 }
 
 /**
@@ -56,10 +53,10 @@ export async function addAnimal(name,race,foodfrequency) {
  * @param { String } id
  * @return { any }
  */
-export async function removeAnimals(id){
-    try{
+export async function removeAnimals(id) {
+    try {
         return await animalsModel.findByIdAndRemove(id)
-    } catch (err){
+    } catch (err) {
         return err
     }
 }
@@ -69,10 +66,10 @@ export async function removeAnimals(id){
  * @param { String } id
  * @return { any }
  */
-export async function getAnimalById(id){
-    try{
+export async function getAnimalById(id) {
+    try {
         return await animalsModel.findById(id)
-    } catch (err){
+    } catch (err) {
         return err
     }
 }
@@ -95,7 +92,7 @@ export async function insertManyAnimals() {
             )
         }
         return await animalsModel.insertMany(animalsListToInsert)
-    } catch (err){
+    } catch (err) {
         return err
     }
 }
@@ -106,13 +103,17 @@ export async function insertManyAnimals() {
  */
 export async function deleteAllAnimals() {
     try {
-    return animalsModel.deleteMany({})
-    } catch (err){
+        return animalsModel.deleteMany({})
+    } catch (err) {
         return err
     }
 }
 
-
+/**
+ * Récupère l'animal et renvoi le nombre d'heures restant avant de le nourrir
+ * @param animal
+ * @returns {Promise<number|*>}
+ */
 export async function computeAnimalNextFeeding(animal) {
     try {
         const lastFeedingDate = animal.lastFeed;
@@ -135,15 +136,19 @@ export async function getAnimalsBy(body,page = 1) {
     try {
         for (const bodyKey in body) {
             const regex = new RegExp(body[bodyKey], 'i')
-            body[bodyKey] = {"$regex" : regex}
+            body[bodyKey] = {"$regex": regex}
         }
-        return animalsModel.find(body).limit(pageSize).skip((page - 1) * pageSize)
-    } catch (err){
+        return animalsModel.find(body)
+    } catch (err) {
         return err
     }
 }
 
-
+/**
+ * Permet de remettre le lastFeed à la date du jour pour simuler le fait de nourrir un animal
+ * @param animalId
+ * @returns {Promise<Query<Document<unknown, any, unknown> & unknown extends {_id?: infer U} ? (U extends any ? {_id: Types.ObjectId} : Required<{_id: U}>) : {_id: Types.ObjectId}, Document<unknown, any, unknown> & unknown extends {_id?: infer U} ? (U extends any ? {_id: Types.ObjectId} : Required<{_id: U}>) : {_id: Types.ObjectId}, unknown, unknown>|*>}
+ */
 export async function feedAnimal(animalId) {
     try {
         return animalsModel.findByIdAndUpdate(animalId, {lastFeed: new Date()});

@@ -9,7 +9,7 @@ const accessTokenSecret = process.env.PAGE_SIZE
 
 // const carl = {username : 'carl',password : 1234,role : ["ROLE_ADMIN"]}
 
- export async function login(req, res) {
+export async function login(req, res) {
     const {username, password} = req.body;
 
 
@@ -25,10 +25,10 @@ const accessTokenSecret = process.env.PAGE_SIZE
         res.json({
             accessToken
         })
-    } else  {
+    } else {
         res.send('Username or password is incorrect');
     }
-};
+}
 
 export async function authenticateJWT(req, res, next) {
     const authHeader = req.headers.authorization;
@@ -39,11 +39,10 @@ export async function authenticateJWT(req, res, next) {
             if (err) {
                 return res.sendStatus(403);
             }
-
             req.user = user;
             next();
         });
     } else {
         res.sendStatus(401);
     }
-};
+}

@@ -1,23 +1,21 @@
 import {zooKeepersModel} from "../models/zookeepers.model.js";
 import {faker} from "@faker-js/faker";
 
-
 export async function getZooKeepers() {
-    try{
+    try {
         return await zooKeepersModel.find({})
-   } catch(err){
+    } catch (err) {
         return err
     }
 }
 
-export async function addZooKeepers(firstname,lastname){
-        try{
-            const newZooKeeper = new zooKeepersModel({firstname : firstname ,lastname : lastname});
-            return await newZooKeeper.save()
-        } catch (err){
-            return err
-        }
-
+export async function addZooKeepers(firstname, lastname) {
+    try {
+        const newZooKeeper = new zooKeepersModel({firstname: firstname, lastname: lastname});
+        return await newZooKeeper.save()
+    } catch (err) {
+        return err
+    }
 }
 
 export async function removeZooKeepers(id){
@@ -39,17 +37,18 @@ export async function checkUser(username,password){
 export async function insertManyZooKeeper() {
     let zooKeeperListToInsert = [];
 
-    for (let i= 0; i < 1000; i++) {
+    for (let i = 0; i < 1000; i++) {
+        const fakefirstname =  faker.name.firstName()
+        const fakelastname =   faker.name.lastName()
         zooKeeperListToInsert.push(
             {
-                firstname : faker.name.firstName(),
-                lastname : faker.name.lastName(),
-                username : lastname + firstname[0],
+                firstname : fakefirstname,
+                lastname : fakelastname,
+                username : fakelastname + fakefirstname[0],
                 password : 1234
             }
         )
     }
-
     return await zooKeepersModel.insertMany(zooKeeperListToInsert);
 }
 
